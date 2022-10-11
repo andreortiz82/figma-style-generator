@@ -1,0 +1,256 @@
+const themes = [
+  { product: 'site', mode: 'light', base: 'Accessible/olive', primary: 'Accessible/green' },
+  { product: 'site', mode: 'dark', base: 'Accessible/olive', primary: 'Accessible/green' },
+  { product: 'sponsor', mode: 'light', base: 'Accessible/sage', primary: 'Accessible/teal' },
+  { product: 'sponsor', mode: 'dark', base: 'Accessible/sage', primary: 'Accessible/teal' },
+  { product: 'admin', mode: 'light', base: 'Accessible/slate', primary: 'Accessible/cyan' },
+  { product: 'admin', mode: 'dark', base: 'Accessible/slate', primary: 'Accessible/cyan' }
+]
+
+// const createStyle = (theme: any, { originalColorName, newStyleName }: any) => {
+//   const { product, mode, base, primary } = theme
+//   const officalStyle = localPaintStyles.filter(item => (item.name === originalColorName))
+//   const newStyle = figma.createPaintStyle()
+//   newStyle.name = `Themes/${product}/${mode}/${newStyleName}`
+//   newStyle.paints = officalStyle[0].paints
+//   console.log(`${newStyle.name}=`, originalColorName)
+// }
+
+// const application = (theme: any) => {
+//   const { product, mode, base, primary } = theme
+//   // Application
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/1`,
+//     newStyleName: `application-background-base`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/2`,
+//     newStyleName: `application-background-subtle`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/12`,
+//     newStyleName: `application-primary-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/11`,
+//     newStyleName: `application-secondary-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/10`,
+//     newStyleName: `application-placeholder-text`
+//   })
+//   // primary
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/9`,
+//     newStyleName: `application-primary`
+//   })
+// }
+
+// const component = (theme: any) => {
+//   const { product, mode, base, primary } = theme
+
+//   // Common
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/1`,
+//     newStyleName: `component-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/7`,
+//     newStyleName: `component-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/12`,
+//     newStyleName: `component-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/5`,
+//     newStyleName: `component-highlight`
+//   })
+//   // hover
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/2`,
+//     newStyleName: `component-hover-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/8`,
+//     newStyleName: `component-hover-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/12`,
+//     newStyleName: `component-hover-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/5`,
+//     newStyleName: `component-hover-highlight`
+//   })
+//   // focus
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/1`,
+//     newStyleName: `component-focus-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `Accessible/blue/${mode}/7`,
+//     newStyleName: `component-focus-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/12`,
+//     newStyleName: `component-focus-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/6`,
+//     newStyleName: `component-focus-highlight`
+//   })
+//   // disabled
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/3`,
+//     newStyleName: `component-disabled-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/6`,
+//     newStyleName: `component-disabled-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/10`,
+//     newStyleName: `component-disabled-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/5`,
+//     newStyleName: `component-disabled-highlight`
+//   })
+// }
+
+// const buttonDefault = (theme: any) => {
+//   const { product, mode, base, primary } = theme
+//   // Common
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/1`,
+//     newStyleName: `button-default-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/7`,
+//     newStyleName: `button-default-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/12`,
+//     newStyleName: `button-default-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/5`,
+//     newStyleName: `button-default-highlight`
+//   })
+//   // hover
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/2`,
+//     newStyleName: `button-default-hover-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/8`,
+//     newStyleName: `button-default-hover-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/12`,
+//     newStyleName: `button-default-hover-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/5`,
+//     newStyleName: `button-default-hover-highlight`
+//   })
+//   // focus
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/1`,
+//     newStyleName: `button-default-focus-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `Accessible/blue/${mode}/7`,
+//     newStyleName: `button-default-focus-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/12`,
+//     newStyleName: `button-default-focus-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/6`,
+//     newStyleName: `button-default-focus-highlight`
+//   })
+//   // disabled
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/3`,
+//     newStyleName: `button-default-disabled-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/6`,
+//     newStyleName: `button-default-disabled-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/10`,
+//     newStyleName: `button-default-disabled-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/5`,
+//     newStyleName: `button-default-disabled-highlight`
+//   })
+
+// }
+
+// const buttonPrimary = (theme: any) => {
+//   const { product, mode, base, primary } = theme
+//   // Common
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/9`,
+//     newStyleName: `button-primary-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/9`,
+//     newStyleName: `button-primary-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${base}/${mode}/12`,
+//     newStyleName: `button-primary-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/9`,
+//     newStyleName: `button-primary-highlight`
+//   })
+//   // hover
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/10`,
+//     newStyleName: `button-primary-hover-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/10`,
+//     newStyleName: `button-primary-hover-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/12`,
+//     newStyleName: `button-primary-hover-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/10`,
+//     newStyleName: `button-primary-hover-highlight`
+//   })
+//   // focus
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/10`,
+//     newStyleName: `button-primary-focus-background`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/10`,
+//     newStyleName: `button-primary-focus-border`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/12`,
+//     newStyleName: `button-primary-focus-text`
+//   })
+//   createStyle(theme, {
+//     originalColorName: `${primary}/${mode}/10`,
+//     newStyleName: `button-primary-focus-highlight`
+//   })
+// }
+
+// themes.forEach(theme => {
+//   createSharedStyles()
+//   application(theme)
+//   component(theme)
+//   buttonDefault(theme)
+//   buttonPrimary(theme)
+// })
