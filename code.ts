@@ -1,31 +1,60 @@
+// This script assumes you have the Radix Color Set in your local styles.
+
+// Query all local styles
 const localPaintStyles = figma.getLocalPaintStyles()
 
+// Create themes array for the products you want to theme
 const themes = [
-  { product: 'site', mode: 'light', base: 'Accessible/olive', primary: 'Accessible/green' },
-  { product: 'site', mode: 'dark', base: 'Accessible/olive', primary: 'Accessible/green' },
-  { product: 'sponsor', mode: 'light', base: 'Accessible/sage', primary: 'Accessible/teal' },
-  { product: 'sponsor', mode: 'dark', base: 'Accessible/sage', primary: 'Accessible/teal' },
-  { product: 'admin', mode: 'light', base: 'Accessible/slate', primary: 'Accessible/cyan' },
-  { product: 'admin', mode: 'dark', base: 'Accessible/slate', primary: 'Accessible/cyan' }
+  { product: 'Product A', mode: 'light', base: 'Accessible/olive', primary: 'Accessible/green' },
+  { product: 'Product A', mode: 'dark', base: 'Accessible/olive', primary: 'Accessible/green' },
+  { product: 'Product B', mode: 'light', base: 'Accessible/sage', primary: 'Accessible/teal' },
+  { product: 'Product B', mode: 'dark', base: 'Accessible/sage', primary: 'Accessible/teal' },
+  { product: 'Product C', mode: 'light', base: 'Accessible/slate', primary: 'Accessible/cyan' },
+  { product: 'Product C', mode: 'dark', base: 'Accessible/slate', primary: 'Accessible/cyan' }
 ]
 
+// Creates common styles for all themes:
+// Links are blue, Danger is red, Success is green, etc...
+// The end result will be:
+// -----
+// Themes/shared/light/link
+// Themes/shared/light/danger
+// Themes/shared/dark/link
+// Themes/shared/dark/danger
+// etc...
 const createCommonStyle = (arg: any) => {
   const { original, alias, path } = arg
+  // In the localPaintStyles array, find the matching color by name
   const officalStyle = localPaintStyles.filter(item => (item.name === `Accessible/${original}`))
+
+  // Create a new style, name it, and apply the color from `officalStyle`
+  // You've just aliased your color!
+  // #FF0099 = magenta
+  // magenta = tag-background
   const newStyle = figma.createPaintStyle()
   newStyle.name = `Themes/${path}/${alias}`
   newStyle.paints = officalStyle[0].paints
 }
 
+// Creates theme styles for all themes - very similar to `createCommonStyle`.
+// TODO: refactor
+// The end result will be:
+// -----
+// Themes/Product A/light/application-background-base
+// Themes/Product B/light/application-background-base
+// Themes/Product A/dark/component-border
+// Themes/Product B/dark/component-border
+// etc...
 const createThemeStyle = (theme: any, { original, alias }: any) => {
   const { product, mode, base, primary } = theme
   const officalStyle = localPaintStyles.filter(item => (item.name === original))
   const newStyle = figma.createPaintStyle()
   newStyle.name = `Themes/${product}/${mode}/${alias}`
   newStyle.paints = officalStyle[0].paints
-  console.log(`${newStyle.name}=`, original)
+  console.log(`${newStyle.name} =`, original)
 }
 
+// Creates common styles for light and dark themes
 ['light', 'dark'].map(mode => {
   createCommonStyle({ original: `blue/${mode}/9`, alias: 'link', path: `shared/${mode}` })
   createCommonStyle({ original: `blue/${mode}/10`, alias: 'link-hover', path: `shared/${mode}` })
@@ -36,6 +65,7 @@ const createThemeStyle = (theme: any, { original, alias }: any) => {
   createCommonStyle({ original: `green/${mode}/9`, alias: 'success', path: `shared/${mode}` })
 })
 
+// Creates semantic styles for light and dark themes
 themes.map(theme => {
   const { product, mode, base, primary } = theme
 
@@ -152,7 +182,6 @@ themes.map(theme => {
 
   // Avatar
   // -----------------
-  // site, sponsor, admin
   createThemeStyle(theme, { original: `${primary}/${mode}/4`, alias: `avatar-background` })
   createThemeStyle(theme, { original: `${primary}/${mode}/4`, alias: `avatar-border` })
   createThemeStyle(theme, { original: `${primary}/${mode}/9`, alias: `avatar-text` })
@@ -163,21 +192,3 @@ themes.map(theme => {
 // keep running, which shows the cancel button at the bottom of the screen.
 figma.notify('Done!')
 figma.closePlugin();
-
-// Avatar
-// ----------
-// type = [
-// neutral,
-// site,
-// sponsor,
-// patient-active,
-// patient-inactive,
-// patient-completed,
-// patient-archived
-// ]
-// avatar-[type]-background
-// avatar-[type]-border
-// avatar-[type]-highlight
-// avatar-[type]-primary-text
-// avatar-[type]-secondary-text
-// avatar-[type]-placeholder-text
