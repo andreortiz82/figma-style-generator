@@ -6,8 +6,10 @@ declare function require(path: string): any;
 
 const App = ({}) => {
     const [tokens, setTokens] = useState([]);
-    const [product, setProduct] = useState('');
-    const [mode, setMode] = useState('');
+    const [product, setProduct] = useState('ost-site');
+    const [mode, setMode] = useState('light');
+    const [createLocalStyles, setCreateLocalStyles] = useState(false);
+    const [format, setFormat] = useState('css');
 
     useEffect(() => {
         // This is how we read messages sent from the plugin controller
@@ -19,12 +21,14 @@ const App = ({}) => {
         };
     }, []);
 
-    const requestTokens = (product, mode) => {
+    const requestTokens = (product, mode, createLocalStyles, format) => {
         parent.postMessage(
             {
                 pluginMessage: {
                     product: product,
                     mode: mode,
+                    createLocalStyles: createLocalStyles,
+                    format: format,
                     type: 'request-tokens',
                 },
             },
@@ -33,23 +37,45 @@ const App = ({}) => {
     };
 
     return (
-        <div>
+        <main>
             <div className="theme-controls">
-                <select onChange={(e) => setProduct(e.target.value)}>
-                    <option value={'ost-site'}>Site</option>
-                    <option value={'ost-sponsor'}>Sponsor</option>
-                    <option value={'ost-admin'}>Admin</option>
-                </select>
-                <select onChange={(e) => setMode(e.target.value)}>
-                    <option value={'light'}>Light</option>
-                    <option value={'dark'}>Dark</option>
-                </select>
-                <button onClick={() => requestTokens(product, mode)}>Get Tokens</button>
+                <div className="options">
+                    <select onChange={(e) => setProduct(e.target.value)}>
+                        <option value={'ost-site'}>Site</option>
+                        <option value={'ost-sponsor'}>Sponsor</option>
+                        <option value={'ost-admin'}>Admin</option>
+                    </select>
+                    <select onChange={(e) => setMode(e.target.value)}>
+                        <option value={'light'}>Light</option>
+                        <option value={'dark'}>Dark</option>
+                    </select>
+                    <select onChange={(e) => setFormat(e.target.value)}>
+                        <option value={'css'}>CSS</option>
+                        <option value={'json'}>JSON</option>
+                        <option value={'list'}>List</option>
+                    </select>
+                    <label>
+                        <input
+                            onChange={() => setCreateLocalStyles(!createLocalStyles)}
+                            checked={createLocalStyles}
+                            type="checkbox"
+                        />
+                        Create local styles
+                    </label>
+                </div>
+                <div className="action">
+                    <button onClick={() => requestTokens(product, mode, createLocalStyles, format)}>Get Tokens</button>
+                </div>
             </div>
 
-            <textarea defaultValue={tokens} />
-            <button onClick={() => copyToClipboard(tokens)}>Copy to Clipboard</button>
-        </div>
+            <textarea placeholder="Choose a theme configuration" defaultValue={tokens} />
+
+            <div className="theme-controls">
+                <div className="options">
+                    <button onClick={() => copyToClipboard(tokens)}>Copy to Clipboard</button>
+                </div>
+            </div>
+        </main>
     );
 };
 

@@ -75,8 +75,14 @@ select {
 
 .theme-controls {
     display: flex;
-    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 8px;
+}
+.theme-controls .options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /*# sourceMappingURL=ui.css.map */
