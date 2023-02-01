@@ -7,6 +7,12 @@ const themes = [
   { product: 'admin', mode: 'dark', base: 'Accessible/slate', primary: 'Accessible/cyan' }
 ]
 
+// const nukeDesscriptions = () => {
+//   localPaintStyles.map(color => {
+//     color.description = ''
+//   })
+// }
+
 // const createStyle = (theme: any, { originalColorName, newStyleName }: any) => {
 //   const { product, mode, base, primary } = theme
 //   const officalStyle = localPaintStyles.filter(item => (item.name === originalColorName))
