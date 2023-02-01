@@ -1,8 +1,9 @@
 {
-  "name": "style-gen",
+  "name": "Token Generator",
   "id": "1160353202054499136",
   "api": "1.0.0",
-  "main": "code.js",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
   "editorType": [
     "figma"
   ]
