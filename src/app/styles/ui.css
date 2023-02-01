@@ -1,3 +1,31 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --plugin-bg: #222;
+        --plugin-primary-text: white;
+        --button-bg: black;
+        --button-label: var(--plugin-primary-text);
+        --button-border: 1px solid #ccc;
+        --select-bg: black;
+        --select-label: var(--plugin-primary-text);
+        --select-border: 1px solid #ccc;
+        --output-bg: black;
+        --output-text: white;
+    }
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        --plugin-bg: #f5f5f5;
+        --plugin-primary-text: #222;
+        --button-bg: white;
+        --button-label: var(--plugin-primary-text);
+        --button-border: 1px solid #ccc;
+        --select-bg: white;
+        --select-label: var(--plugin-primary-text);
+        --select-border: 1px solid #ccc;
+        --output-bg: white;
+        --output-text: black;
+    }
+}
 * {
     box-sizing: border-box;
 }
@@ -5,10 +33,50 @@
 body {
     padding: 24px;
     margin: 0;
-    background: white;
+    background: var(--plugin-bg);
+    color: var(--plugin-primary-text);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
         'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
+}
+
+button {
+    background: var(--button-bg);
+    color: var(--button-label);
+    border-radius: 4px;
+    border: var(--button-border);
+    outline: none;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+textarea {
+    display: block;
+    padding: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 24px;
+    width: 100%;
+    height: auto;
+    background: var(--output-bg);
+    color: var(--output-text);
+    min-height: 350px;
+    margin-bottom: 8px;
+}
+
+select {
+    background: var(--select-bg);
+    color: var(--select-label);
+    border-radius: 4px;
+    border: var(--select-border);
+    outline: none;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.theme-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 /*# sourceMappingURL=ui.css.map */

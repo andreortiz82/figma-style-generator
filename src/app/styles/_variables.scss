@@ -1,7 +1,35 @@
-$plugin-bg-color: white;
-$list-background-color: #f5f5f5;
-$button-bg: dodgerblue;
-$button-text: white;
-$button-secondary-bg: $plugin-bg-color;
-$button-secondary-bdr: #ccc;
-$button-secondary-text: black;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --plugin-bg: #222;
+        --plugin-primary-text: white;
+
+        --button-bg: black;
+        --button-label: var(--plugin-primary-text);
+        --button-border: 1px solid #ccc;
+
+        --select-bg: black;
+        --select-label: var(--plugin-primary-text);
+        --select-border: 1px solid #ccc;
+
+        --output-bg: black;
+        --output-text: white;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --plugin-bg: #f5f5f5;
+        --plugin-primary-text: #222;
+
+        --button-bg: white;
+        --button-label: var(--plugin-primary-text);
+        --button-border: 1px solid #ccc;
+
+        --select-bg: white;
+        --select-label: var(--plugin-primary-text);
+        --select-border: 1px solid #ccc;
+
+        --output-bg: white;
+        --output-text: black;
+    }
+}
