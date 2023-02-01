@@ -1,7 +1,8 @@
 // This plugin can only be used on the Web Foundations 2.0 file.
 figma.showUI(__html__, {width: 600, height: 500});
 
-const localPaintStyles = figma.getLocalPaintStyles();
+// const localPaintStyles = figma.getLocalPaintStyles();
+let localPaintStyles = [];
 
 const generateCSSVars = (arg: any) => {
     const {original, alias} = arg;
@@ -25,6 +26,13 @@ const generateLocalStyles = (original, alias, product, mode) => {
     // newStyle.name = `REMOVE-ME-${product}-${mode}/${alias}`;
     newStyle.name = alias;
     newStyle.paints = officalStyle[0].paints;
+};
+
+const generateLocalBaseColors = (name, color, description) => {
+    const newStyle = figma.createPaintStyle();
+    newStyle.name = name;
+    newStyle.paints = color;
+    newStyle.description = description;
 };
 
 const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) => {
@@ -257,6 +265,14 @@ figma.ui.onmessage = (msg) => {
         figma.ui.postMessage({
             type: 'styles-generated',
             message: generateStyleAliases(msg.product, msg.mode, msg.createLocalStyles, msg.format).join('\r\n'),
+        });
+    }
+
+    if (msg.type === 'load-base-colors') {
+        console.log('😃 Picasso has loaded...');
+        msg.colors.map((color) => {
+            localPaintStyles.push(color);
+            // generateLocalBaseColors(color.name, color.color, color.description)
         });
     }
 };

@@ -1,7 +1,7 @@
 // import * as React from 'react';
 import React, {useState, useEffect} from 'react';
-import {copyToClipboard} from '../utils';
-
+import {copyToClipboard, rgbStringToHexString, createColorStyle} from '../utils';
+import {BaseColors} from '../data/tokens';
 declare function require(path: string): any;
 
 const App = ({}) => {
@@ -12,6 +12,8 @@ const App = ({}) => {
     const [format, setFormat] = useState('css');
 
     useEffect(() => {
+        loadPicassoBaseColors();
+
         // This is how we read messages sent from the plugin controller
         window.onmessage = (event) => {
             const {type, message} = event.data.pluginMessage;
@@ -30,6 +32,22 @@ const App = ({}) => {
                     createLocalStyles: createLocalStyles,
                     format: format,
                     type: 'request-tokens',
+                },
+            },
+            '*'
+        );
+    };
+
+    const loadPicassoBaseColors = () => {
+        const colors = BaseColors.map((color) =>
+            createColorStyle(color.name, rgbStringToHexString(color.color), color.description)
+        );
+
+        parent.postMessage(
+            {
+                pluginMessage: {
+                    colors: colors,
+                    type: 'load-base-colors',
                 },
             },
             '*'
@@ -72,7 +90,7 @@ const App = ({}) => {
             <textarea placeholder="Choose a theme configuration" defaultValue={tokens} />
 
             <div className="theme-controls">
-                <div className="options">
+                <div className="action">
                     <button onClick={() => copyToClipboard(tokens)}>Copy to Clipboard</button>
                 </div>
             </div>

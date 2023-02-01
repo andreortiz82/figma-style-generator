@@ -1,5 +1,37 @@
 import {Octokit} from '@octokit/core';
-export const LOCAL_STORAGE_SETTINGS = 'alias-creator-settings';
+export const LOCAL_STORAGE_SETTINGS = 'semantic-token-settings';
+
+export const rgbStringToHexString = (rgba) => {
+    let sep = rgba.indexOf(',') > -1 ? ',' : ' ';
+    rgba = rgba.substr(5).split(')')[0].split(sep);
+
+    // Strip the slash if using space-separated syntax
+    if (rgba.indexOf('/') > -1) rgba.splice(3, 1);
+
+    for (let R in rgba) {
+        let r = rgba[R];
+        if (r.indexOf('%') > -1) {
+            let p = r.substr(0, r.length - 1) / 100;
+
+            if (R < 3) {
+                rgba[R] = Math.round(p * 255);
+            } else {
+                rgba[R] = p;
+            }
+        }
+    }
+    let r = (+rgba[0]).toString(16),
+        g = (+rgba[1]).toString(16),
+        b = (+rgba[2]).toString(16),
+        a = Math.round(+rgba[3] * 255).toString(16);
+
+    if (r.length == 1) r = '0' + r;
+    if (g.length == 1) g = '0' + g;
+    if (b.length == 1) b = '0' + b;
+    if (a.length == 1) a = '0' + a;
+
+    return '#' + r + g + b + a;
+};
 
 export const rgbToHex = (rgb) => {
     // https://github.com/Ahmad-Amin/figmaPlugin/blob/f27c57245a51248857df4cf278c5599508c517f2/src/class_functions/classes/classes.js
@@ -20,6 +52,33 @@ export const rgbToHex = (rgb) => {
     if (g.length == 1) g = '0' + g;
     if (b.length == 1) b = '0' + b;
     return `#${r.toUpperCase() + g.toUpperCase() + b.toUpperCase()}`;
+};
+
+// accepts either a hex string or RGB for color parameter
+export const createColorStyle = (name: string, color: RGB | string, description: string) => {
+    // returns input value if already RGB; otherwise converts from hex to RGB
+    const convertToRGB = (color: string | RGB) => {
+        // can't use typeof here because RGB is an interface type
+        if ((color as RGB).hasOwnProperty('r')) {
+            return color as RGB;
+        }
+        const hex = (color as String).replace('#', '');
+        const rgb: RGB = {
+            r: parseInt(hex.substr(0, 2), 16) / 255,
+            g: parseInt(hex.substr(2, 2), 16) / 255,
+            b: parseInt(hex.substr(4, 2), 16) / 255,
+        };
+        return rgb;
+    };
+    // const style = figma.createPaintStyle();
+    // style.name = name;
+    const paint: SolidPaint = {
+        type: 'SOLID',
+        color: convertToRGB(color),
+        opacity: 1,
+        blendMode: 'NORMAL',
+    };
+    return {name: name, paints: [paint], description: description};
 };
 
 export const saveFile = (content) => {
