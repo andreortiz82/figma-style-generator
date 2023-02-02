@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {copyToClipboard, rgbStringToHexString, createColorStyle} from '../utils';
 import {BaseColors} from '../data/tokens';
+import _ from 'lodash';
 declare function require(path: string): any;
 
 const App = ({}) => {

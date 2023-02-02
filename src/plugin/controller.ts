@@ -66,7 +66,7 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
             break;
         case 'ost-admin':
             baseColor = 'base/slate';
-            primaryColor = 'base/cyan';
+            primaryColor = 'base/blue';
             break;
         case 'wire-boi':
             baseColor = 'base/gray';
