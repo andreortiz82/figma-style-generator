@@ -13,7 +13,7 @@ export const rgbStringToHexString = (rgba) => {
         if (r.indexOf('%') > -1) {
             let p = r.substr(0, r.length - 1) / 100;
 
-            if (R < 3) {
+            if (parseInt(R) < 3) {
                 rgba[R] = Math.round(p * 255);
             } else {
                 rgba[R] = p;
@@ -55,7 +55,7 @@ export const rgbToHex = (rgb) => {
 };
 
 // accepts either a hex string or RGB for color parameter
-export const createColorStyle = (name: string, color: RGB | string, description: string) => {
+export const createColorStyle = (name, color, description) => {
     // returns input value if already RGB; otherwise converts from hex to RGB
     const convertToRGB = (color: string | RGB) => {
         // can't use typeof here because RGB is an interface type

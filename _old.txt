@@ -7,8 +7,11 @@ const themes = [
   { product: 'admin', mode: 'dark', base: 'Accessible/slate', primary: 'Accessible/cyan' }
 ]
 
+// --- Dangerous Function
 // const nukeDesscriptions = () => {
-//   localPaintStyles.map(color => {
+//  const globalPaints = figma.getLocalPaintStyles();
+
+//  globalPaints.map(color => {
 //     color.description = ''
 //   })
 // }
