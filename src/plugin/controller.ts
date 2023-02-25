@@ -4,22 +4,27 @@ figma.showUI(__html__, {width: 600, height: 500});
 // const localPaintStyles = figma.getLocalPaintStyles();
 let localPaintStyles = [];
 
-const generateCSSVars = (arg: any) => {
+const generateCSSVars = (arg) => {
     const {original, alias} = arg;
     const reformat = original.replace('base/', '').replace(/[/]/g, '-');
     return `--${alias}: var(--${reformat});`;
 };
 
-const generateListVars = (arg: any) => {
+const generateListVars = (arg) => {
     const {original, alias} = arg;
     const reformat = original.replace('base/', '').replace(/[/]/g, '-');
-
     return `$${alias}: $${reformat};`;
 };
 
-const generateJSONVars = (arg: any) => {
+// const generateJSONVars = (arg: any) => {
+//     const {original, alias} = arg;
+//     return `{"${alias}": "${original}"},`;
+// };
+
+const generateJSONVars = (arg) => {
     const {original, alias} = arg;
-    return `{"${alias}": "${original}"},`;
+    const reformat = original.replace('base/', '').replace(/[/]/g, '-');
+    return `"${alias}": theme.colors["${reformat}"],`;
 };
 
 const generateLocalStyles = (original, alias) => {
@@ -37,15 +42,12 @@ const generateLocalBaseColors = (name, color, description) => {
     newStyle.description = description;
 };
 
-const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) => {
+const generateStyleAliases = (reqProduct, reqMode, format) => {
     let baseColor = '';
     let primaryColor = '';
     let output = [];
 
     const createSemanticToken = ({original, alias}) => {
-        if (createLocalStyles) {
-            generateLocalStyles(original, alias);
-        }
         if (format === 'css') {
             output.push(generateCSSVars({original: original, alias: alias}));
         }
@@ -84,7 +86,7 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
     // -----------------
     // neutral
     createSemanticToken({original: `${baseColor}/${reqMode}/3`, alias: `alert-neutral-background`});
-    createSemanticToken({original: `${baseColor}/${reqMode}/7`, alias: `alert-neutral-border`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/6`, alias: `alert-neutral-border`});
     createSemanticToken({original: `${baseColor}/${reqMode}/9`, alias: `alert-neutral-highlight`});
     createSemanticToken({original: `${baseColor}/${reqMode}/12`, alias: `alert-neutral-primary-text`});
     createSemanticToken({original: `${baseColor}/${reqMode}/11`, alias: `alert-neutral-secondary-text`});
@@ -92,28 +94,28 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
 
     // info
     createSemanticToken({original: `base/blue/${reqMode}/3`, alias: `alert-info-background`});
-    createSemanticToken({original: `base/blue/${reqMode}/7`, alias: `alert-info-border`});
+    createSemanticToken({original: `base/blue/${reqMode}/6`, alias: `alert-info-border`});
     createSemanticToken({original: `base/blue/${reqMode}/9`, alias: `alert-info-highlight`});
     createSemanticToken({original: `base/blue/${reqMode}/12`, alias: `alert-info-primary-text`});
     createSemanticToken({original: `base/blue/${reqMode}/11`, alias: `alert-info-secondary-text`});
     createSemanticToken({original: `base/blue/${reqMode}/10`, alias: `alert-info-tertiary-text`});
     // danger
     createSemanticToken({original: `base/red/${reqMode}/3`, alias: `alert-danger-background`});
-    createSemanticToken({original: `base/red/${reqMode}/7`, alias: `alert-danger-border`});
+    createSemanticToken({original: `base/red/${reqMode}/6`, alias: `alert-danger-border`});
     createSemanticToken({original: `base/red/${reqMode}/9`, alias: `alert-danger-highlight`});
     createSemanticToken({original: `base/red/${reqMode}/12`, alias: `alert-danger-primary-text`});
     createSemanticToken({original: `base/red/${reqMode}/11`, alias: `alert-danger-secondary-text`});
     createSemanticToken({original: `base/red/${reqMode}/10`, alias: `alert-danger-tertiary-text`});
     // warning
     createSemanticToken({original: `base/amber/${reqMode}/3`, alias: `alert-warning-background`});
-    createSemanticToken({original: `base/amber/${reqMode}/7`, alias: `alert-warning-border`});
+    createSemanticToken({original: `base/amber/${reqMode}/6`, alias: `alert-warning-border`});
     createSemanticToken({original: `base/amber/${reqMode}/9`, alias: `alert-warning-highlight`});
     createSemanticToken({original: `base/amber/${reqMode}/12`, alias: `alert-warning-primary-text`});
     createSemanticToken({original: `base/amber/${reqMode}/11`, alias: `alert-warning-secondary-text`});
     createSemanticToken({original: `base/amber/${reqMode}/10`, alias: `alert-warning-tertiary-text`});
     // success
     createSemanticToken({original: `base/grass/${reqMode}/3`, alias: `alert-success-background`});
-    createSemanticToken({original: `base/grass/${reqMode}/7`, alias: `alert-success-border`});
+    createSemanticToken({original: `base/grass/${reqMode}/6`, alias: `alert-success-border`});
     createSemanticToken({original: `base/grass/${reqMode}/9`, alias: `alert-success-highlight`});
     createSemanticToken({original: `base/grass/${reqMode}/12`, alias: `alert-success-primary-text`});
     createSemanticToken({original: `base/grass/${reqMode}/11`, alias: `alert-success-secondary-text`});
@@ -135,9 +137,9 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
 
     // Avatar
     // -----------------
-    createSemanticToken({original: `${primaryColor}/${reqMode}/4`, alias: `avatar-background`});
-    createSemanticToken({original: `${primaryColor}/${reqMode}/4`, alias: `avatar-border`});
-    createSemanticToken({original: `${primaryColor}/${reqMode}/9`, alias: `avatar-text`});
+    createSemanticToken({original: `${primaryColor}/${reqMode}/3`, alias: `avatar-background`});
+    createSemanticToken({original: `${primaryColor}/${reqMode}/6`, alias: `avatar-border`});
+    createSemanticToken({original: `${primaryColor}/${reqMode}/10`, alias: `avatar-text`});
 
     // Button Default
     // -----------------
@@ -150,8 +152,8 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
     createSemanticToken({original: `${baseColor}/${reqMode}/12`, alias: `button-default-hover-text`});
     // focus
     createSemanticToken({original: `${baseColor}/${reqMode}/2`, alias: `button-default-focus-background`});
-    createSemanticToken({original: `${baseColor}/${reqMode}/7`, alias: `button-default-focus-border`});
-    createSemanticToken({original: `${baseColor}/${reqMode}/11`, alias: `button-default-focus-text`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/8`, alias: `button-default-focus-border`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/12`, alias: `button-default-focus-text`});
 
     // Button Primary
     // -----------------
@@ -197,7 +199,7 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
 
     // Button Disabled
     // Same for every variation of button
-    createSemanticToken({original: `${baseColor}/${reqMode}/3`, alias: `button-disabled-background`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/4`, alias: `button-disabled-background`});
     createSemanticToken({original: `${baseColor}/${reqMode}/6`, alias: `button-disabled-border`});
     createSemanticToken({original: `${baseColor}/${reqMode}/10`, alias: `button-disabled-text`});
 
@@ -221,7 +223,7 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
     createSemanticToken({original: `${baseColor}/${reqMode}/11`, alias: `component-secondary-text`});
     createSemanticToken({original: `${baseColor}/${reqMode}/10`, alias: `component-tertiary-text`});
     createSemanticToken({original: `${baseColor}/${reqMode}/12`, alias: `component-text`});
-    createSemanticToken({original: `${baseColor}/${reqMode}/7`, alias: `component-placeholder-text`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/8`, alias: `component-placeholder-text`});
     createSemanticToken({original: `${baseColor}/${reqMode}/1`, alias: `component-text-inverse`});
 
     // hover
@@ -232,13 +234,13 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
     // focus
     createSemanticToken({original: `${baseColor}/${reqMode}/1`, alias: `component-focus-background`});
     createSemanticToken({original: `${baseColor}/${reqMode}/12`, alias: `component-focus-text`});
-    createSemanticToken({original: `base/blue/${reqMode}/7`, alias: `component-focus-border`});
-    createSemanticToken({original: `${baseColor}/${reqMode}/6`, alias: `component-focus-highlight`});
+    createSemanticToken({original: `base/blue/${reqMode}/9`, alias: `component-focus-border`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/7`, alias: `component-focus-highlight`});
     // disabled
-    createSemanticToken({original: `${baseColor}/${reqMode}/3`, alias: `component-disabled-background`});
-    createSemanticToken({original: `${baseColor}/${reqMode}/7`, alias: `component-disabled-text`});
-    createSemanticToken({original: `${baseColor}/${reqMode}/3`, alias: `component-disabled-border`});
-    createSemanticToken({original: `${baseColor}/${reqMode}/5`, alias: `component-disabled-highlight`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/4`, alias: `component-disabled-background`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/10`, alias: `component-disabled-text`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/6`, alias: `component-disabled-border`});
+    createSemanticToken({original: `${baseColor}/${reqMode}/6`, alias: `component-disabled-highlight`});
 
     // Filters
     // -----------------
@@ -248,7 +250,7 @@ const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) =>
     createSemanticToken({original: `base/indigo/${reqMode}/6`, alias: `filter-block-text-tertiary`});
     createSemanticToken({original: `base/indigo/${reqMode}/1`, alias: `filter-block-tag-background`});
     createSemanticToken({original: `base/indigo/${reqMode}/12`, alias: `filter-block-tag-label`});
-    createSemanticToken({original: `base/indigo/${reqMode}/8`, alias: `filter-tag-background`});
+    createSemanticToken({original: `base/indigo/${reqMode}/9`, alias: `filter-tag-background`});
     createSemanticToken({original: `base/indigo/${reqMode}/1`, alias: `filter-tag-label`});
     createSemanticToken({original: `base/indigo/${reqMode}/6`, alias: `filter-tag-icon`});
     createSemanticToken({original: `base/indigo/${reqMode}/9`, alias: `filter-indication-active`});
@@ -273,13 +275,12 @@ figma.ui.onmessage = (msg) => {
     if (msg.type === 'request-tokens') {
         figma.ui.postMessage({
             type: 'styles-generated',
-            message: generateStyleAliases(msg.product, msg.mode, msg.createLocalStyles, msg.format).join('\r\n'),
+            message: generateStyleAliases('ost-site', 'light', 'css').join('\r\n'),
         });
     }
 
     if (msg.type === 'load-base-colors') {
         console.log('😃 Picasso has loaded...');
-
         msg.colors.map((color) => {
             localPaintStyles.push(color);
             // generateLocalBaseColors(color.name, color.color, color.description)
