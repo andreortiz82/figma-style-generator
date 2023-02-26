@@ -64,6 +64,7 @@ const App = ({}) => {
                         <option value={'ost-sponsor'}>Sponsor</option>
                         <option value={'ost-admin'}>Admin</option>
                         <option value={'wire-boi'}>Wire Boi</option>
+                        <option value={'ost-new'}>New</option>
                     </select>
                     <select onChange={(e) => setMode(e.target.value)}>
                         <option value={'light'}>Light</option>

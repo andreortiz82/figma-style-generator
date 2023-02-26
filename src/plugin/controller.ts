@@ -4,30 +4,23 @@ figma.showUI(__html__, {width: 600, height: 500});
 // const localPaintStyles = figma.getLocalPaintStyles();
 let localPaintStyles = [];
 
-const generateCSSVars = (arg) => {
+const generateCSSVars = (arg: any) => {
     const {original, alias} = arg;
     const reformat = original.replace('base/', '').replace(/[/]/g, '-');
     return `--${alias}: var(--${reformat});`;
 };
 
-const generateListVars = (arg) => {
+const generateListVars = (arg: any) => {
     const {original, alias} = arg;
-    const reformat = original.replace('base/', '').replace(/[/]/g, '-');
-    return `$${alias}: $${reformat};`;
+    return `${alias}: ${original};`;
 };
 
-// const generateJSONVars = (arg: any) => {
-//     const {original, alias} = arg;
-//     return `{"${alias}": "${original}"},`;
-// };
-
-const generateJSONVars = (arg) => {
+const generateJSONVars = (arg: any) => {
     const {original, alias} = arg;
-    const reformat = original.replace('base/', '').replace(/[/]/g, '-');
-    return `"${alias}": theme.colors["${reformat}"],`;
+    return `{${alias}: ${original}},`;
 };
 
-const generateLocalStyles = (original, alias) => {
+const generateLocalStyles = (original, alias, product, mode) => {
     const officalStyle = localPaintStyles.filter((paint) => paint.name == original);
     const newStyle = figma.createPaintStyle();
     // newStyle.name = `REMOVE-ME-${product}-${mode}/${alias}`;
@@ -42,12 +35,15 @@ const generateLocalBaseColors = (name, color, description) => {
     newStyle.description = description;
 };
 
-const generateStyleAliases = (reqProduct, reqMode, format) => {
+const generateStyleAliases = (reqProduct, reqMode, createLocalStyles, format) => {
     let baseColor = '';
     let primaryColor = '';
     let output = [];
 
     const createSemanticToken = ({original, alias}) => {
+        if (createLocalStyles) {
+            generateLocalStyles(original, alias, reqProduct, reqMode);
+        }
         if (format === 'css') {
             output.push(generateCSSVars({original: original, alias: alias}));
         }
@@ -70,15 +66,15 @@ const generateStyleAliases = (reqProduct, reqMode, format) => {
             break;
         case 'ost-admin':
             baseColor = 'base/slate';
-            primaryColor = 'base/blue';
+            primaryColor = 'base/cyan';
             break;
         case 'wire-boi':
             baseColor = 'base/gray';
             primaryColor = 'base/gray';
             break;
         default:
-            baseColor = 'base/gray';
-            primaryColor = 'base/gray';
+            baseColor = 'base/gold';
+            primaryColor = 'base/blue';
             break;
     }
 
@@ -275,7 +271,7 @@ figma.ui.onmessage = (msg) => {
     if (msg.type === 'request-tokens') {
         figma.ui.postMessage({
             type: 'styles-generated',
-            message: generateStyleAliases('ost-site', 'light', 'css').join('\r\n'),
+            message: generateStyleAliases(msg.product, msg.mode, msg.createLocalStyles, msg.format).join('\r\n'),
         });
     }
 

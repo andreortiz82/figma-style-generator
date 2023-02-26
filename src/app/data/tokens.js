@@ -27,15 +27,14 @@ export const BaseColors = [
     {name: 'base/indigo/light/12', description: '', color: 'rgba(16, 29, 70, 1)'},
     {
         name: 'base/green/light/1',
-        description:
-            'ost-site-light-button-primary-text,ost-site-light-button-primary-hover-text,ost-site-light-button-primary-focus-text',
+        description: '',
         color: 'rgba(251, 254, 252, 1)',
     },
     {name: 'base/green/light/2', description: '', color: 'rgba(242, 252, 245, 1)'},
     {name: 'base/green/light/3', description: '', color: 'rgba(233, 249, 238, 1)'},
     {
         name: 'base/green/light/4',
-        description: 'ost-site-light-avatar-background,ost-site-light-avatar-border',
+        description: '',
         color: 'rgba(221, 243, 228, 1)',
     },
     {name: 'base/green/light/5', description: '', color: 'rgba(204, 235, 215, 1)'},
@@ -43,34 +42,32 @@ export const BaseColors = [
     {name: 'base/green/light/7', description: '', color: 'rgba(146, 206, 172, 1)'},
     {
         name: 'base/green/light/8',
-        description: 'ost-site-light-button-primary-focus-background,ost-site-light-button-primary-focus-border',
+        description: '',
         color: 'rgba(91, 185, 140, 1)',
     },
     {
         name: 'base/green/light/9',
-        description:
-            'ost-common-success,ost-site-light-application-primary,ost-site-light-button-primary-background,ost-site-light-button-primary-border,ost-site-light-avatar-text',
+        description: '',
         color: 'rgba(48, 164, 108, 1)',
     },
     {
         name: 'base/green/light/10',
-        description:
-            'ost-site-light-application-primary-hover,ost-site-light-button-primary-hover-background,ost-site-light-button-primary-hover-border',
+        description: '',
+
         color: 'rgba(41, 151, 100, 1)',
     },
     {name: 'base/green/light/11', description: '', color: 'rgba(24, 121, 78, 1)'},
     {name: 'base/green/light/12', description: '', color: 'rgba(21, 50, 38, 1)'},
     {
         name: 'base/green/dark/1',
-        description:
-            'ost-site-dark-button-primary-text,ost-site-dark-button-primary-hover-text,ost-site-dark-button-primary-focus-text',
+        description: '',
         color: 'rgba(13, 25, 18, 1)',
     },
     {name: 'base/green/dark/2', description: '', color: 'rgba(12, 31, 23, 1)'},
     {name: 'base/green/dark/3', description: '', color: 'rgba(15, 41, 30, 1)'},
     {
         name: 'base/green/dark/4',
-        description: 'ost-site-dark-avatar-background,ost-site-dark-avatar-border',
+        description: '',
         color: 'rgba(17, 49, 35, 1)',
     },
     {name: 'base/green/dark/5', description: '', color: 'rgba(19, 57, 41, 1)'},
@@ -78,19 +75,18 @@ export const BaseColors = [
     {name: 'base/green/dark/7', description: '', color: 'rgba(27, 84, 58, 1)'},
     {
         name: 'base/green/dark/8',
-        description: 'ost-site-dark-button-primary-focus-background,ost-site-dark-button-primary-focus-border',
+        description: '',
         color: 'rgba(35, 110, 74, 1)',
     },
     {
         name: 'base/green/dark/9',
-        description:
-            'ost-common-success,ost-site-dark-application-primary,ost-site-dark-button-primary-background,ost-site-dark-button-primary-border,ost-site-dark-avatar-text',
+        description: '',
+
         color: 'rgba(48, 164, 108, 1)',
     },
     {
         name: 'base/green/dark/10',
-        description:
-            'ost-site-dark-application-primary-hover,ost-site-dark-button-primary-hover-background,ost-site-dark-button-primary-hover-border',
+        description: '',
         color: 'rgba(60, 177, 121, 1)',
     },
     {name: 'base/green/dark/11', description: '', color: 'rgba(76, 195, 138, 1)'},
@@ -99,8 +95,8 @@ export const BaseColors = [
     {name: 'base/amber/light/2', description: '', color: 'rgba(255, 249, 237, 1)'},
     {
         name: 'base/amber/light/3',
-        description:
-            'ost-site-light-alert-warning-background,ost-sponsor-light-alert-warning-background,ost-admin-light-alert-warning-background',
+        description: '',
+
         color: 'rgba(255, 244, 213, 1)',
     },
     {name: 'base/amber/light/4', description: '', color: 'rgba(255, 236, 188, 1)'},
@@ -108,41 +104,35 @@ export const BaseColors = [
     {name: 'base/amber/light/6', description: '', color: 'rgba(255, 211, 134, 1)'},
     {
         name: 'base/amber/light/7',
-        description:
-            'ost-site-light-alert-warning-border,ost-sponsor-light-alert-warning-border,ost-admin-light-alert-warning-border',
+        description: '',
         color: 'rgba(243, 186, 99, 1)',
     },
     {name: 'base/amber/light/8', description: '', color: 'rgba(238, 157, 43, 1)'},
     {
         name: 'base/amber/light/9',
-        description:
-            'ost-common-warning,ost-site-light-alert-warning-highlight,ost-sponsor-light-alert-warning-highlight,ost-admin-light-alert-warning-highlight',
+        description: '',
         color: 'rgba(255, 178, 36, 1)',
     },
     {
         name: 'base/amber/light/10',
-        description:
-            'ost-site-light-alert-warning-placeholder-text,ost-sponsor-light-alert-warning-placeholder-text,ost-admin-light-alert-warning-placeholder-text',
+        description: '',
         color: 'rgba(255, 160, 28, 1)',
     },
     {
         name: 'base/amber/light/11',
-        description:
-            'ost-site-light-alert-warning-secondary-text,ost-sponsor-light-alert-warning-secondary-text,ost-admin-light-alert-warning-secondary-text',
+        description: '',
         color: 'rgba(173, 87, 0, 1)',
     },
     {
         name: 'base/amber/light/12',
-        description:
-            'ost-site-light-alert-warning-primary-text,ost-sponsor-light-alert-warning-primary-text,ost-admin-light-alert-warning-primary-text',
+        description: '',
         color: 'rgba(78, 32, 9, 1)',
     },
     {name: 'base/amber/dark/1', description: '', color: 'rgba(31, 19, 0, 1)'},
     {name: 'base/amber/dark/2', description: '', color: 'rgba(39, 23, 0, 1)'},
     {
         name: 'base/amber/dark/3',
-        description:
-            'ost-site-dark-alert-warning-background,ost-sponsor-dark-alert-warning-background,ost-admin-dark-alert-warning-background',
+        description: '',
         color: 'rgba(64, 24, 28, 1)',
     },
     {name: 'base/amber/dark/4', description: '', color: 'rgba(63, 34, 0, 1)'},
@@ -150,33 +140,29 @@ export const BaseColors = [
     {name: 'base/amber/dark/6', description: '', color: 'rgba(87, 51, 0, 1)'},
     {
         name: 'base/amber/dark/7',
-        description:
-            'ost-site-dark-alert-warning-border,ost-sponsor-dark-alert-warning-border,ost-admin-dark-alert-warning-border',
+        description: '',
         color: 'rgba(105, 63, 5, 1)',
     },
     {name: 'base/amber/dark/8', description: '', color: 'rgba(130, 78, 0, 1)'},
     {
         name: 'base/amber/dark/9',
-        description:
-            'ost-common-warning,ost-site-dark-alert-warning-highlight,ost-sponsor-dark-alert-warning-highlight,ost-admin-dark-alert-warning-highlight',
+        description: '',
+
         color: 'rgba(255, 178, 36, 1)',
     },
     {
         name: 'base/amber/dark/10',
-        description:
-            'ost-site-dark-alert-warning-placeholder-text,ost-sponsor-dark-alert-warning-placeholder-text,ost-admin-dark-alert-warning-placeholder-text',
+        description: '',
         color: 'rgba(255, 203, 71, 1)',
     },
     {
         name: 'base/amber/dark/11',
-        description:
-            'ost-site-dark-alert-warning-secondary-text,ost-sponsor-dark-alert-warning-secondary-text,ost-admin-dark-alert-warning-secondary-text',
+        description: '',
         color: 'rgba(241, 161, 13, 1)',
     },
     {
         name: 'base/amber/dark/12',
-        description:
-            'ost-site-dark-alert-warning-primary-text,ost-sponsor-dark-alert-warning-primary-text,ost-admin-dark-alert-warning-primary-text',
+        description: '',
         color: 'rgba(254, 243, 221, 1)',
     },
     {name: 'base/sand/light/1', description: '', color: 'rgba(253, 253, 252, 1)'},
