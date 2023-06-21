@@ -12,12 +12,12 @@ const generateCSSVars = (arg: any) => {
 
 const generateListVars = (arg: any) => {
     const {original, alias} = arg;
-    return `${alias}: ${original};`;
+    return `${alias}: "${original}";`;
 };
 
 const generateJSONVars = (arg: any) => {
     const {original, alias} = arg;
-    return `{${alias}: ${original}},`;
+    return `{${alias}: "${original}"},`;
 };
 
 const generateLocalStyles = (original, alias, description) => {
@@ -923,9 +923,17 @@ figma.ui.onmessage = (msg) => {
     }
 
     if (msg.type === 'load-base-colors') {
-        console.log('😃 Picasso has loaded...');
+        console.log('😃 Foundation colors loaded');
         msg.colors.map((color) => {
             localPaintStyles.push(color);
+        });
+    }
+
+    if (msg.type === 'delete-local-styles') {
+        const localStyles = figma.getLocalPaintStyles();
+        console.log('Styles Deleted!', localStyles);
+        localStyles.map((style) => {
+            style.remove();
         });
     }
 };

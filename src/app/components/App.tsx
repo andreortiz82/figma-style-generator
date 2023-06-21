@@ -55,6 +55,17 @@ const App = ({}) => {
         );
     };
 
+    const deleteLocalStyles = () => {
+        parent.postMessage(
+            {
+                pluginMessage: {
+                    type: 'delete-local-styles',
+                },
+            },
+            '*'
+        );
+    };
+
     return (
         <main>
             <div className="theme-controls">
@@ -96,6 +107,9 @@ const App = ({}) => {
             <div className="theme-controls">
                 <div className="action">
                     <button onClick={() => copyToClipboard(tokens)}>Copy to Clipboard</button>
+                </div>
+                <div className="action">
+                    <button onClick={() => deleteLocalStyles()}>Delete local styles</button>
                 </div>
             </div>
         </main>
