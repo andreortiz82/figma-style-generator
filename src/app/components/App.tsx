@@ -59,17 +59,19 @@ const App = ({}) => {
         <main>
             <div className="theme-controls">
                 <div className="options">
-                    <select onChange={(e) => setProduct(e.target.value)}>
+                    {/* <select onChange={(e) => setProduct(e.target.value)}>
                         <option value={'ost-site'}>Site</option>
                         <option value={'ost-sponsor'}>Sponsor</option>
                         <option value={'ost-admin'}>Admin</option>
                         <option value={'wire-boi'}>Wire Boi</option>
                         <option value={'ost-new'}>New</option>
-                    </select>
+                    </select> */}
+
                     <select onChange={(e) => setMode(e.target.value)}>
                         <option value={'light'}>Light</option>
                         <option value={'dark'}>Dark</option>
                     </select>
+
                     <select onChange={(e) => setFormat(e.target.value)}>
                         <option value={'css'}>CSS</option>
                         <option value={'json'}>JSON</option>
